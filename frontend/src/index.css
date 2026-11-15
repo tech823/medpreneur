@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: #0F172A;
+  background: #FFFFFF;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Manrope', sans-serif;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===== PRINT / PDF STYLES ===== */
+@media print {
+  /* Hide non-report elements */
+  header, footer, nav,
+  [data-testid="marketing-header"],
+  [data-testid="marketing-footer"],
+  [data-testid="whatsapp-widget"] {
+    display: none !important;
+  }
+
+  /* Reset page */
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    font-size: 11px;
+  }
+
+  /* Force backgrounds to print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Report container */
+  [data-testid="planner-report"] {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Report header - force 4-column grid */
+  [data-testid="report-header"] {
+    padding: 24px 32px !important;
+    page-break-after: avoid;
+    background: #1e293b !important;
+    color: white !important;
+  }
+
+  [data-testid="report-header"] .grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    gap: 16px !important;
+  }
+
+  [data-testid="report-header"] p {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+
+  /* Report content sections */
+  [data-testid="planner-report"] > div {
+    max-width: 100% !important;
+    padding: 16px 32px !important;
+  }
+
+  /* Force grid layouts in print */
+  [data-testid="planner-report"] .grid {
+    display: grid !important;
+  }
+
+  [data-testid="planner-report"] .grid.grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  [data-testid="planner-report"] .grid.grid-cols-3,
+  [data-testid="planner-report"] .grid.md\\:grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+
+  [data-testid="planner-report"] .grid.grid-cols-4,
+  [data-testid="planner-report"] .grid.md\\:grid-cols-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  }
+
+  [data-testid="planner-report"] .grid.md\\:grid-cols-6 {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr !important;
+  }
+
+  /* Recommendation tile */
+  [data-testid="report-recommendation-tile"] > div {
+    padding: 20px !important;
+    border-radius: 12px !important;
+  }
+
+  /* Cards and bordered elements */
+  [data-testid="planner-report"] .rounded-xl,
+  [data-testid="planner-report"] .rounded-2xl,
+  [data-testid="planner-report"] .rounded-lg {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* Section spacing */
+  [data-testid="planner-report"] section {
+    margin-bottom: 16px !important;
+    page-break-inside: avoid;
+  }
+
+  /* SVG readiness score circle */
+  [data-testid="report-readiness"] svg {
+    width: 80px !important;
+    height: 80px !important;
+  }
+
+  /* Scenario comparison */
+  [data-testid="report-scenarios"] .grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+
+  /* Timeline */
+  [data-testid="report-timeline"] .grid {
+    grid-template-columns: repeat(6, 1fr) !important;
+  }
+
+  /* Financial cards */
+  [data-testid="report-investment"] .grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  }
+
+  [data-testid="report-financials"] .grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+
+  /* Exit value */
+  [data-testid="report-exit"] .grid {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+
+  /* UAE stats */
+  [data-testid="report-uae"] .grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  }
+
+  /* Why MedPreneur advantages */
+  [data-testid="report-why-mp"] .grid.md\\:grid-cols-2 {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Comparison table */
+  [data-testid="report-why-mp"] .grid.grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+
+  /* Hide print button */
+  button[data-testid="report-download"],
+  button:has(svg) {
+    display: none !important;
+  }
+
+  /* Next steps links - show as text */
+  [data-testid="report-book-consultation"],
+  [data-testid="report-register"] {
+    border: 1px solid #ccc !important;
+    color: #1e293b !important;
+    background: #f8fafc !important;
+    text-decoration: none !important;
+  }
+
+  /* Page breaks */
+  [data-testid="report-model"] {
+    page-break-before: avoid;
+  }
+
+  [data-testid="report-scenarios"] {
+    page-break-before: always;
+  }
+
+  [data-testid="report-uae"] {
+    page-break-before: always;
+  }
+
+  /* Profile summary grid */
+  [data-testid="report-profile"] .grid {
+    grid-template-columns: repeat(6, 1fr) !important;
+  }
+
+  /* Ensure text doesn't overflow */
+  [data-testid="planner-report"] p,
+  [data-testid="planner-report"] span,
+  [data-testid="planner-report"] div {
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+  }
+
+  /* Footer disclaimer */
+  [data-testid="planner-report"] > :last-child {
+    margin-top: 8px !important;
+  }
+}
