@@ -5,7 +5,7 @@ COPY frontend/package.json frontend/yarn.lock ./
 RUN yarn install --network-timeout 600000
 COPY frontend/ ./
 ENV CI=false
-ENV REACT_APP_BACKEND_URL=
+ENV REACT_APP_BACKEND_URL=/api
 RUN yarn build
 
 # ---------- Stage 2: runtime (nginx + FastAPI) ----------
